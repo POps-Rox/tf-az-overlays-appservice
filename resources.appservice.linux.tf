@@ -11,7 +11,7 @@ resource "azurerm_linux_web_app" "linuxapp" {
   name                = local.app_service_name
   resource_group_name = local.resource_group_name
   location            = local.location
-  service_plan_id     = var.create_app_service_plan == false && var.existing_app_service_plan_name != null ? data.azurerm_service_plan.existing_asp.0.id : azurerm_service_plan.asp.0.id
+  service_plan_id     = var.create_app_service_plan == false && var.existing_app_service_plan_name != null ? data.azurerm_service_plan.existing_asp[0].id : azurerm_service_plan.asp[0].id
 
   site_config {
     always_on             = var.linux_app_site_config.always_on
@@ -22,7 +22,7 @@ resource "azurerm_linux_web_app" "linuxapp" {
       # azurerm 4.x consolidated docker fields: `docker_image` + `docker_image_tag`
       # are now `docker_image_name` ("image:tag") plus `docker_registry_url`.
       docker_image_name   = var.linux_app_site_config.application_stack.docker_image == null ? null : "${var.linux_app_site_config.application_stack.docker_image}:${var.linux_app_site_config.application_stack.docker_image_tag == null ? "latest" : var.linux_app_site_config.application_stack.docker_image_tag}"
-      docker_registry_url = var.linux_app_site_config.application_stack.docker_image == null ? null : "https://${module.mod_container_registry.0.login_server}"
+      docker_registry_url = var.linux_app_site_config.application_stack.docker_image == null ? null : "https://${module.mod_container_registry[0].login_server}"
       dotnet_version      = var.linux_app_site_config.application_stack.dotnet_version == null ? null : var.linux_app_site_config.application_stack.dotnet_version
       go_version          = var.linux_app_site_config.application_stack.go_version
       java_server         = var.linux_app_site_config.application_stack.java_server

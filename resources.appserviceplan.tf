@@ -7,7 +7,7 @@ resource "azurerm_service_plan" "asp" {
   location                   = local.location
   resource_group_name        = local.resource_group_name
   os_type                    = var.app_service_plan_os_type
-  app_service_environment_id = var.enable_app_service_environment == false ? null : data.azurerm_app_service_environment_v3.ase.0.id
+  app_service_environment_id = var.enable_app_service_environment == false ? null : data.azurerm_app_service_environment_v3.ase[0].id
 
   sku_name     = var.app_service_plan_sku_name
   worker_count = var.app_service_plan_worker_count

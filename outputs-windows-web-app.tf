@@ -7,32 +7,32 @@
 
 output "windows_app_service_id" {
   description = "Id of the Windows App Service"
-  value       = try(azurerm_windows_web_app.appService.0.id, null)
+  value       = try(azurerm_windows_web_app.appService[0].id, null)
 }
 
 output "windows_app_service_name" {
   description = "Name of the Windows App Service"
-  value       = try(azurerm_windows_web_app.appService.0.name, null)
+  value       = try(azurerm_windows_web_app.appService[0].name, null)
 }
 
 output "windows_app_service_default_site_hostname" {
   description = "The Default Hostname associated with the Windows App Service"
-  value       = try(azurerm_windows_web_app.appService.0.default_hostname, null)
+  value       = try(azurerm_windows_web_app.appService[0].default_hostname, null)
 }
 
 output "windows_app_service_outbound_ip_addresses" {
   description = "Outbound IP addresses of the Windows App Service"
-  value       = try(split(",", azurerm_windows_web_app.appService.0.outbound_ip_addresses), null)
+  value       = try(split(",", azurerm_windows_web_app.appService[0].outbound_ip_addresses), null)
 }
 
 output "windows_app_service_possible_outbound_ip_addresses" {
   description = "Possible outbound IP addresses of the Windows App Service"
-  value       = try(split(",", azurerm_windows_web_app.appService.0.possible_outbound_ip_addresses), null)
+  value       = try(split(",", azurerm_windows_web_app.appService[0].possible_outbound_ip_addresses), null)
 }
 
 output "windows_app_service_site_credential" {
   description = "Site credential block of the Windows App Service"
-  value       = try(azurerm_windows_web_app.appService.0.site_credential, null)
+  value       = try(azurerm_windows_web_app.appService[0].site_credential, null)
 }
 
 output "windows_app_service_identity_service_principal_id" {
